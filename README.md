@@ -131,6 +131,39 @@ rewiremock('yyy').with({});
 const file = await import('somemodule');
 ```
 
+### A Class Instance Mocking Example
+Suppose you have a dependency module that loads a JavaScript class, instantiates it with "new", and then calls functions / properties of the class instance. You can mock these like so:
+
+// ClassDepService.js
+```
+class ClassDepService {
+  
+  doThings() {
+    console.log('I'm doing real things!')
+  }
+  
+}
+module.exports = ClassDepService;
+```
+
+// ClassService.js
+```
+const ClassDepService = require('./ClassDepService')
+
+module.exports = class ClassService {
+  callDep () {
+    const classDepService = new ClassDepService()
+    classDepService.doThings()
+  }
+}
+```
+
+// ClassToTest.js
+
+
+
+
+
 Ok! Let's move forward!
  
  
